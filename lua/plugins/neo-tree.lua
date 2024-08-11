@@ -10,9 +10,11 @@ return {
         require("neo-tree").setup({
             filesystem = {
                 filtered_items = {
-                    hide_dotfiles = false, -- show dotfiles
-                    hide_hidden = false,   -- show hidden files
+                    hide_dotfiles = false,              -- show dotfiles
+                    hide_hidden = false,                -- show hidden files
                 },
+                follow_current_file = { enabled = true }, -- expand and focus on current file
+                use_libuv_file_watcher = true           -- enables file system watcher
             },
         })
 
