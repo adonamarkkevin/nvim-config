@@ -24,9 +24,9 @@ no need to install. Stow will handle the installation
 - [init.lua](./init.lua)
   - lazy.nvim is installed
   - vim options
-- [remap.lua](https://github.com/adonamarkkevin/lazy-vim-config/blob/master/lua/remap.lua)
+- [remap.lua](./lua/remap.lua)
   - remap vim key
-- [./lua/plugins/](https://github.com/adonamarkkevin/lazy-vim-config/tree/master/lua/plugins)
+- [./lua/plugins/](./lua/plugins/)
   - plugins are installed here
   - if you want to add new plugin, just create a file on this directory and
     follow the format of the other files. If plugin(s) needs remapping write it
