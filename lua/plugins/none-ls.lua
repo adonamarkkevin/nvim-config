@@ -7,7 +7,9 @@ return {
                 null_ls.builtins.formatting.stylua.with({
                     extra_args = { "--indent", "Spaces", "--indent-width", "4" }
                 }),
-                null_ls.builtins.formatting.prettier,
+                null_ls.builtins.formatting.prettier.with({
+                    extra_args = { "--tab-width", "2" }
+                }),
                 null_ls.builtins.diagnostics.erb_lint,
             },
         })
