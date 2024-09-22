@@ -2,13 +2,16 @@ return {
     "nvimtools/none-ls.nvim",
     config = function()
         local null_ls = require("null-ls")
+
+        -- Set up null-ls with desired sources
         null_ls.setup({
             sources = {
                 null_ls.builtins.formatting.stylua.with({
-                    extra_args = { "--indent", "Spaces", "--indent-width", "4" }
+                    extra_filetypes = { "lua" },
+                    extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
                 }),
                 null_ls.builtins.formatting.prettier.with({
-                    extra_args = { "--tab-width", "2" }
+                    extra_filetypes = { "typescript", "typescriptreact" },
                 }),
                 null_ls.builtins.diagnostics.erb_lint,
             },
