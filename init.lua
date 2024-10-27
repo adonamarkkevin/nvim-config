@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.opt.clipboard = "unnamedplus" -- can copy and paste outside vim
 
-vim.opt.number = true -- Show absolute line numbers
+vim.opt.relativenumber = true -- Show relative line numbers
+vim.opt.number = true -- Show absolute line number on the current line
 
 -- limit code to 80 char horizontally
 vim.opt.textwidth = 80 -- Set maximum width of text to 80 characters

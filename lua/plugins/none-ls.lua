@@ -8,7 +8,6 @@ return {
             sources = {
                 null_ls.builtins.formatting.stylua.with({
                     extra_filetypes = { "lua" },
-                    extra_args = { "--indent-type", "Spaces", "--indent-width", "4" },
                 }),
                 null_ls.builtins.formatting.prettier.with({
                     extra_filetypes = { "typescript", "typescriptreact" },
