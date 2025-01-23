@@ -8,6 +8,9 @@ return {
     },
     config = function()
         require("neo-tree").setup({
+            window = {
+                width = 90,
+            },
             filesystem = {
                 filtered_items = {
                     hide_dotfiles = false, -- show dotfiles
@@ -33,11 +36,11 @@ return {
             if neo_tree_open then
                 vim.cmd("Neotree close") -- Close Neo-tree if it's open
             else
-                vim.cmd("Neotree filesystem reveal left") -- Open Neo-tree if it's not open
+                vim.cmd("Neotree filesystem reveal right") -- Open Neo-tree if it's not open
             end
         end, { noremap = true, silent = true })
 
         -- Key mapping for buffers in float mode
-        vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal float<cr>", {})
+        vim.keymap.set("n", "<leader>bf", ":Neotree buffers reveal right<cr>", {})
     end,
 }
