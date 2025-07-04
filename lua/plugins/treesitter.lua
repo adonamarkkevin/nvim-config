@@ -17,12 +17,13 @@ return {
                     "tsx",
                     "typescript",
                     "javascript",
-                    "graphql"
+                    "graphql",
+                    "sql",
                 },
                 auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },
             })
-        end
-    }
+        end,
+    },
 }
