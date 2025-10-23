@@ -19,28 +19,29 @@ return {
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-            local lspconfig = require("lspconfig")
-            lspconfig.ts_ls.setup({
-                capabilities = capabilities,
+            -- Set up keymaps when LSP attaches
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    local bufnr = args.buf
+                    local opts = { buffer = bufnr, noremap = true, silent = true }
+                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+                    vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, opts)
+                    vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, opts)
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+                end,
             })
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.html.setup({
-                capabilities = capabilities,
-            })
-            lspconfig.lua_ls.setup({
+
+            -- Set default capabilities for all LSP servers
+            vim.lsp.config("*", {
                 capabilities = capabilities,
             })
 
-            lspconfig.sqlls.setup({
-                capabilities = capabilities,
-            })
-
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+            -- Enable LSP servers (uses defaults from nvim-lspconfig)
+            vim.lsp.enable("ts_ls")
+            vim.lsp.enable("gopls")
+            vim.lsp.enable("html")
+            vim.lsp.enable("lua_ls")
+            vim.lsp.enable("sqlls")
         end,
     },
 }
