@@ -37,3 +37,8 @@ function HandleCtrlCExit()
 end
 
 vim.api.nvim_set_keymap("n", "<C-c>", ":lua HandleCtrlCExit()<CR>", { noremap = true, silent = true })
+
+-- toggle inlay hints
+vim.keymap.set("n", "<leader>ih", function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle inlay hints", noremap = true, silent = true })
