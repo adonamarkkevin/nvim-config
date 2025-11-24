@@ -1,0 +1,63 @@
+# Go CLI Application Configuration Example
+# Copy this file to golangcli.yml and customize for your project
+
+app:
+  name: my-go-cli
+  version: 1.0.0
+  description: Example Go CLI application
+
+build:
+  output: bin/
+  binary_name: mycli
+  platforms:
+    - linux/amd64
+    - darwin/amd64
+    - windows/amd64
+
+commands:
+  # Define CLI commands here
+  default:
+    description: Default command
+    flags:
+      - name: verbose
+        short: v
+        type: bool
+        description: Enable verbose output
+      - name: config
+        short: c
+        type: string
+        description: Path to config file
+        default: config.yml
+
+  serve:
+    description: Start the server
+    flags:
+      - name: port
+        short: p
+        type: int
+        description: Port to listen on
+        default: 8080
+      - name: host
+        short: h
+        type: string
+        description: Host to bind to
+        default: localhost
+
+logging:
+  level: info  # debug, info, warn, error
+  format: json # json, text
+  output: stdout
+
+database:
+  driver: postgres
+  host: localhost
+  port: 5432
+  name: myapp
+  user: postgres
+  password: ""
+  ssl_mode: disable
+
+api:
+  timeout: 30s
+  retry_attempts: 3
+  base_url: https://api.example.com
