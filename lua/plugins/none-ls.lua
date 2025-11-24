@@ -14,6 +14,12 @@ return {
                     prefer_local = "node_modules/.bin",
                 }),
                 null_ls.builtins.diagnostics.erb_lint,
+                -- Go formatters
+                null_ls.builtins.formatting.goimports,
+                null_ls.builtins.formatting.gofumpt,
+                -- Note: golangci-lint integration via none-ls is deprecated
+                -- Use go.nvim's :GoLint command instead (<leader>gl)
+                -- gopls already provides staticcheck diagnostics automatically
             },
         })
 
