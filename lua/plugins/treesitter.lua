@@ -7,6 +7,8 @@ return {
             config.setup({
                 ensure_installed = {
                     "lua",
+                    "markdown",
+                    "markdown_inline",
                     "go",
                     "gomod",
                     "gosum",
@@ -21,7 +23,10 @@ return {
                     "sql",
                 },
                 auto_install = true,
-                highlight = { enable = true },
+                highlight = {
+                    enable = true,
+                    disable = { "markdown", "markdown_inline" },
+                },
                 indent = { enable = true },
             })
         end,

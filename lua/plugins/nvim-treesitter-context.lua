@@ -3,11 +3,18 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
         require("treesitter-context").setup({
-            enable = true, -- Enable this plugin
-            max_lines = 3, -- How many lines to show at the top
-            min_window_height = 10, -- Only show if window is tall enough
-            mode = "cursor", -- "cursor" keeps the current function visible
-            separator = "─", -- Adds a line separator
+            enable = true,
+            max_lines = 3,
+            min_window_height = 10,
+            mode = "cursor",
+            separator = "─",
+        })
+
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "markdown",
+            callback = function()
+                require("treesitter-context").disable()
+            end,
         })
     end,
 }

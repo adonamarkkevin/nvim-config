@@ -5,6 +5,24 @@ return {
     },
     config = function()
         local null_ls = require("null-ls")
+        local h = require("null-ls.helpers")
+
+        -- Custom mbake formatter for Makefiles
+        local mbake = h.make_builtin({
+            name = "mbake",
+            meta = {
+                url = "https://github.com/EbodShojaei/bake",
+                description = "Makefile formatter and linter",
+            },
+            method = null_ls.methods.FORMATTING,
+            filetypes = { "make" },
+            generator_opts = {
+                command = "sh",
+                args = { "-c", "mbake format --stdin 2>/dev/null || cat" },
+                to_stdin = true,
+            },
+            factory = h.formatter_factory,
+        })
 
         -- Set up null-ls with desired sources
         null_ls.setup({
@@ -17,9 +35,12 @@ return {
                 -- Go formatters
                 null_ls.builtins.formatting.goimports,
                 null_ls.builtins.formatting.gofumpt,
-                -- Note: golangci-lint integration via none-ls is deprecated
-                -- Use go.nvim's :GoLint command instead (<leader>gl)
-                -- gopls already provides staticcheck diagnostics automatically
+                -- Go linters (golangci-lint includes staticcheck, stylecheck, simple, and 50+ others)
+                null_ls.builtins.diagnostics.golangci_lint,
+                null_ls.builtins.code_actions.gomodifytags,
+                null_ls.builtins.code_actions.impl,
+                -- Makefile formatter (checkmake linter disabled - too strict for CI/CD Makefiles)
+                mbake,
             },
         })
 

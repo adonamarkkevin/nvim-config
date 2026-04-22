@@ -15,3 +15,11 @@ vim.opt.wrap = true -- Enable line wrapping
 vim.opt.linebreak = true -- Wrap lines at convenient points (like spaces)
 vim.opt.formatoptions:append("t") -- Automatically wrap text when typing beyond 80 characters
 vim.opt.colorcolumn = "80" -- Display a vertical line at the 80-character mark
+
+-- Neovim 0.12 built-in treesitter crashes on markdown injection parsing
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "markdown",
+    callback = function()
+        vim.treesitter.stop()
+    end,
+})
