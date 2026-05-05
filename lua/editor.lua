@@ -16,6 +16,16 @@ vim.opt.linebreak = true -- Wrap lines at convenient points (like spaces)
 vim.opt.formatoptions:append("t") -- Automatically wrap text when typing beyond 80 characters
 vim.opt.colorcolumn = "80" -- Display a vertical line at the 80-character mark
 
+-- Prevent E138: wipe stale ShaDa tmp files on startup
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local shada_dir = vim.fn.stdpath("state") .. "/shada"
+        for _, f in ipairs(vim.fn.glob(shada_dir .. "/main.shada.tmp.*", false, true)) do
+            vim.fn.delete(f)
+        end
+    end,
+})
+
 -- Neovim 0.12 built-in treesitter crashes on markdown injection parsing
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
